@@ -17,9 +17,9 @@ module.exports = function (passport) {
 	});
 	
 	passport.use(new TwitterStrategy({
-    consumerKey: 0EokwfuREP1THut06W4uEkdjf,
-    consumerSecret: XJMhGfxdzZgNShYntAc49B6jQhJhWDPvct331nJ4KTU7fYVTDt,
-    callbackURL: "http://127.0.0.1:3000/auth/twitter/callback"
+    consumerKey: configAuth.twitterAuth.consumerKey,
+    consumerSecret: configAuth.twitterAuth.consumerSecret,
+    callbackURL: configAuth.twitterAuth.callbackURL
   },
   function(token, tokenSecret, profile, cb) {
     User.findOrCreate({ twitterId: profile.id }, function (err, user) {
@@ -28,7 +28,7 @@ module.exports = function (passport) {
   }
 ));
 
-	passport.use(new GitHubStrategy({
+	/*passport.use(new GitHubStrategy({
 		clientID: configAuth.githubAuth.clientID,
 		clientSecret: configAuth.githubAuth.clientSecret,
 		callbackURL: configAuth.githubAuth.callbackURL
@@ -61,5 +61,5 @@ module.exports = function (passport) {
 				}
 			});
 		});
-	}));
+	}));*/
 };
