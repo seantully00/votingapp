@@ -1,6 +1,7 @@
 'use strict';
 
 var GitHubStrategy = require('passport-github').Strategy;
+var TwitterStrategy = require('passport-twitter').Strategy;
 var User = require('../models/users');
 var configAuth = require('./auth');
 
@@ -14,6 +15,18 @@ module.exports = function (passport) {
 			done(err, user);
 		});
 	});
+	
+	passport.use(new TwitterStrategy({
+    consumerKey: 0EokwfuREP1THut06W4uEkdjf,
+    consumerSecret: XJMhGfxdzZgNShYntAc49B6jQhJhWDPvct331nJ4KTU7fYVTDt,
+    callbackURL: "http://127.0.0.1:3000/auth/twitter/callback"
+  },
+  function(token, tokenSecret, profile, cb) {
+    User.findOrCreate({ twitterId: profile.id }, function (err, user) {
+      return cb(err, user);
+    });
+  }
+));
 
 	passport.use(new GitHubStrategy({
 		clientID: configAuth.githubAuth.clientID,
