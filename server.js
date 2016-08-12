@@ -12,6 +12,22 @@ require('./app/config/passport')(passport);
 
 mongoose.connect(process.env.MONGO_URI);
 
+var userSchema = new mongoose.Schema ({
+	username: { type: String, lowercase: true, unique: true }	
+});
+
+userSchema.statics.findOrCreate = function findOrCreate(profile, cb){
+    var userObj = new this();
+    this.findOne({_id : profile.id},function(err,result){ 
+        if(!result){
+            userObj.username = profile.displayName;
+            userObj.save(cb);
+        }else{
+            cb(err,result);
+        }
+    });
+};
+
 app.use('/controllers', express.static(process.cwd() + '/app/controllers'));
 app.use('/public', express.static(process.cwd() + '/public'));
 app.use('/common', express.static(process.cwd() + '/app/common'));
