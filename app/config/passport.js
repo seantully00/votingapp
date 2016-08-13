@@ -22,11 +22,29 @@ module.exports = function (passport) {
     callbackURL: configAuth.twitterAuth.callbackURL
   },
   function(token, tokenSecret, profile, cb) {
-    User.findOne({ twitterId: profile.id }, function (err, user) {
+    User.findOne({ 'twitterId': profile.id }, function (err, user) {
+    if (err) {
       return cb(err, user);
-    });
+    }
+  if (!user) {
+                user = new User({
+                    name: profile.displayName,
+                    email: profile.emails[0].value,
+                    username: profile.username,
+                });
+                user.save(function(err) {
+                    if (err) console.log(err);
+                    return cb(err, user);
+                });
+            } else {
+                //found user. Return
+                return cb(err, user);
+            }
+        });
   }
 ));
+        
+
 
 	/*passport.use(new GitHubStrategy({
 		clientID: configAuth.githubAuth.clientID,
