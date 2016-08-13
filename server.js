@@ -28,6 +28,14 @@ userSchema.statics.findOrCreate = function findOrCreate(profile, cb){
     });
 };
 
+app.get('/*', function(req, res, next) {
+    if (req.headers.host.match(/^www\./) != null) {
+      res.redirect("http://" + req.headers.host.slice(4) + req.url, 301);
+    } else {
+      next();
+    }
+});
+
 app.use('/controllers', express.static(process.cwd() + '/app/controllers'));
 app.use('/public', express.static(process.cwd() + '/public'));
 app.use('/common', express.static(process.cwd() + '/app/common'));
