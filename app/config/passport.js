@@ -22,7 +22,7 @@ module.exports = function (passport) {
     callbackURL: configAuth.twitterAuth.callbackURL
   },
   function(token, tokenSecret, profile, cb) {
-    User.findOrCreate({ twitterId: profile.id }, function (err, user) {
+    User.findOne({ twitterId: profile.id }, function (err, user) {
       return cb(err, user);
     });
   }
