@@ -10,13 +10,9 @@ var app = express();
 require('dotenv').load();
 require('./app/config/passport')(passport);
 
-mongoose.connect(process.env.MONGO_URI);
 
-var userSchema = new mongoose.Schema ({
-	username: { type: String, lowercase: true, unique: true }	
-});
 
-userSchema.statics.findOrCreate = function findOrCreate(profile, cb){
+/*userSchema.statics.findOrCreate = function findOrCreate(profile, cb){
     var userObj = new this();
     this.findOne({_id : profile.id},function(err,result){ 
         if(!result){
@@ -26,15 +22,15 @@ userSchema.statics.findOrCreate = function findOrCreate(profile, cb){
             cb(err,result);
         }
     });
-};
+};*/
 
-app.get('/*', function(req, res, next) {
+/*app.get('/*', function(req, res, next) {
     if (req.headers.host.match(/^www\./) != null) {
       res.redirect("http://" + req.headers.host.slice(4) + req.url, 301);
     } else {
       next();
     }
-});
+});*/
 
 app.use('/controllers', express.static(process.cwd() + '/app/controllers'));
 app.use('/public', express.static(process.cwd() + '/public'));

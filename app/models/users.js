@@ -1,16 +1,20 @@
 'use strict';
 
+require('dotenv').load();
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var User = new Schema({
+var conn = mongoose.connect(process.env.MONGO_URI);
+
+var Userschema = new Schema({
 	twitter: {
-		id: String,
-		displayName: String,
-		username: String,
+	'user_id': { type: String, lowercase: true, unique: true },
+	'screenname': { type: String, lowercase: true, unique: true }
 	},
    polls: {
    }
 });
 
-module.exports = mongoose.model('User', User);
+var userentry = conn.model('users', Userschema);
+
+module.exports = mongoose.model('User', Userschema);
