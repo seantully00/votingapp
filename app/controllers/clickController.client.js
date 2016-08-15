@@ -5,7 +5,7 @@
    var addButton = document.querySelector('.btn-add');
    var deleteButton = document.querySelector('.btn-delete');
    var clickNbr = document.querySelector('#click-nbr');
-   var apiUrl = 'https://stvotingapp.herokuapp.com/api/clicks';
+   var apiUrl = 'https://fccwebapps-seantully00.c9users.io/api/clicks';
 
    function updateClickCount (data) {
       var clicksObject = JSON.parse(data);
