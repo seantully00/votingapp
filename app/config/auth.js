@@ -9,6 +9,6 @@ module.exports = {
 	'twitterAuth': {
 		'consumerKey': process.env.TWITTER_KEY,
     	'consumerSecret': process.env.TWITTER_SECRET,
-    	'callbackURL': process.env.APP_URL + 'auth/twitter/callback'
+    	'callbackURL': 'https://fccwebapps-seantully00.c9users.io/auth/twitter/callback'
 	}
 };
