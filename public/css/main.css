@@ -151,6 +151,12 @@ img {
 	font-weight: 400;
 }
 
+/****** Create Poll Styling ******/
+
+.createpoll {
+	text-align: center;
+}
+
 /****** Profile Styling ******/
 
 .github-profile {
