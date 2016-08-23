@@ -27,11 +27,16 @@ module.exports = function (passport) {
       return cb(err, user);
     }
   if (!user) {
-                var newUser = new User();
-                newUser.twitter.id          = profile.id;
-                newUser.twitter.token       = token;
-                newUser.twitter.username    = profile.username;
-                newUser.twitter.displayName = profile.displayName;
+                var newUser = new User({
+                	'twitter.id ': profile.id,
+					'twitter.token': token,
+					'twitter.username': profile.username,
+					'twitter.displayName': profile.displayname
+                });
+                //newUser.twitter.id          = profile.id;
+                //newUser.twitter.token       = token;
+                //newUser.twitter.username    = profile.username;
+                //newUser.twitter.displayName = profile.displayName;
 
                 newUser.save(function(err) {
                     if (err) console.log(err);
