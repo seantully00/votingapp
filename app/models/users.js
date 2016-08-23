@@ -8,10 +8,8 @@ var conn = mongoose.connect(process.env.MONGO_URI);
 
 var Userschema = new Schema({
 	twitter: {
-	'twitter.id ': { type: String},
-	'twitter.token': { type: String},
-	'twitter.username': { type: String},
-	'twitter.displayName': { type: String}
+	'user_id': { type: String, lowercase: true, unique: true },
+	'screenname': { type: String, lowercase: true, unique: true }
 	},
    polls: {
    }
@@ -19,4 +17,4 @@ var Userschema = new Schema({
 
 var userentry = conn.model('users', Userschema);
 
-module.exports = mongoose.model('Users', Userschema);
+module.exports = mongoose.model('User', Userschema);
