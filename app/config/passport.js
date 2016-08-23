@@ -2,7 +2,7 @@
 
 var GitHubStrategy = require('passport-github').Strategy;
 var TwitterStrategy = require('passport-twitter').Strategy;
-var User = require('../models/users');
+var User = require('../models/users.js');
 var configAuth = require('./auth');
 
 module.exports = function (passport) {
@@ -28,8 +28,8 @@ module.exports = function (passport) {
     }
   if (!user) {
                 user = new User({
-                    'id': profile.user_id,
-                    'screenname': profile.screen_name,
+                    'user_id': profile.user_id,
+                    'screen_name': profile.screen_name,
                 });
                 user.save(function(err) {
                     if (err) console.log(err);
