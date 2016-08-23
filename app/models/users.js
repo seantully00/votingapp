@@ -8,8 +8,10 @@ var conn = mongoose.connect(process.env.MONGO_URI);
 
 var Userschema = new Schema({
 	twitter: {
-	'user_id': { type: String, lowercase: true, unique: true },
-	'screen_name': { type: String, lowercase: true, unique: true }
+	'twitter.id ': { type: String},
+	'twitter.token': { type: String},
+	'twitter.username': { type: String},
+	'twitter.displayName': { type: String}
 	},
    polls: {
    }
