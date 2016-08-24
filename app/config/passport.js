@@ -36,7 +36,7 @@ module.exports = function (passport) {
                 });
             } else {
                 //found user. Return
-                return cb(err, newUser);
+                return cb(err, user);
             }
         });
   }
