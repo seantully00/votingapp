@@ -22,14 +22,14 @@ module.exports = function (passport) {
     callbackURL: configAuth.twitterAuth.callbackURL
   },
   function(token, tokenSecret, profile, cb) {
-    User.findOne({ 'user_id': profile.user_id }, function (err, user) {
+    User.findOne({ 'twitterid': profile.id }, function (err, user) {
     if (err) {
       return cb(err, user);
     }
   if (!user) {
-                user = new User({
-                    'id': profile.user_id,
-                    'screenname': profile.screen_name,
+                var user = new User({
+                    'twitterid': profile.id,
+                    'username': profile.username,
                 });
                 user.save(function(err) {
                     if (err) console.log(err);
