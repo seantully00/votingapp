@@ -102,6 +102,8 @@ header a ~ p {
 img {
 	margin: 0 auto;
 	display: block;
+	height: 300px;
+	width: 200px;
 }
 
 .clementine-text { /* Styling for the Clementine.js text */
